@@ -2486,4 +2486,16 @@ describe('Defaults', () => {
             done();
         });
     });
+
+    it('defaults inherits agents properties', (done) => {
+
+        const wreck1 = Wreck.defaults({});
+        const wreck2 = wreck1.defaults({});
+
+        //using === because `.to.equal(Wreck.agents)` triggers a deepEqual explosion
+        expect(wreck1.agents === Wreck.agents).to.equal(true);
+        expect(wreck2.agents === Wreck.agents).to.equal(true);
+
+        done();
+    });
 });
